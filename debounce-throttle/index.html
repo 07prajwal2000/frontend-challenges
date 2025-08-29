@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Debounce - Throttle</title>
+		<style>
+			input {
+				font-size: 18px;
+				padding: 8px;
+				border-radius: 8px;
+				border: 2px solid rgb(133, 133, 246);
+			}
+			input:focus {
+				outline: 3px solid rgb(162, 162, 255);
+				border-radius: 8px;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text" id="search" placeholder="Search" />
+		<h3>Value: <span id="value"></span></h3>
+		<h3>Debounce: <span id="debounce"></span></h3>
+		<h3>Throttle: <span id="throttle"></span></h3>
+	</body>
+</html>
+<script>
+	const search = document.getElementById("search");
+	const searchValue = document.getElementById("value");
+	const debounceElement = document.getElementById("debounce");
+	const throttleElement = document.getElementById("throttle");
+
+	const debouncer = debounce((value) => {
+		debounceElement.textContent = value;
+	});
+	const throttler = throttle((value) => {
+		throttleElement.textContent = value;
+	});
+
+	search.oninput = function () {
+		searchValue.textContent = this.value;
+		debouncer(this.value);
+		throttler(this.value);
+	};
+
+	function throttle(callback, delay = 1000) {
+		let throttled = false;
+		let prevArgs = null;
+		return function () {
+			let args = arguments;
+			if (throttled) {
+				prevArgs = args;
+				return;
+			}
+			throttled = true;
+			setTimeout(() => {
+				callback.apply(null, prevArgs ?? args);
+				throttled = false;
+				prevArgs = null;
+			}, delay);
+		};
+	}
+
+	function debounce(callback, delay = 1000) {
+		let timeoutId = undefined;
+		return function () {
+			if (timeoutId) {
+				clearTimeout(timeoutId);
+				timeoutId = undefined;
+			}
+			const args = arguments;
+			timeoutId = setTimeout(() => {
+				callback.apply(null, args);
+			}, delay);
+		};
+	}
+</script>
