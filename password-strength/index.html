@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Password Strength</title>
+		<style>
+			input {
+				font-size: 18px;
+				padding: 8px;
+				border-radius: 8px;
+				border: 2px solid rgb(133, 133, 246);
+			}
+			input:focus {
+				outline: 3px solid rgb(162, 162, 255);
+				border-radius: 8px;
+			}
+			table,
+			th,
+			td {
+				border: 1px solid gray;
+				border-collapse: collapse;
+			}
+			td,
+			th {
+				padding: 6px 11px;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="password" id="password" placeholder="Password" />
+		<br />
+		<label for="progress">Password Strength</label>
+		<progress id="progress" max="100" value="0"></progress>
+		<table>
+			<thead>
+				<tr>
+					<th>Type</th>
+					<th>✅/❌</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Lowercase</td>
+					<td id="lowercase">❌</td>
+				</tr>
+				<tr>
+					<td>Uppercase</td>
+					<td id="uppercase">❌</td>
+				</tr>
+				<tr>
+					<td>Number</td>
+					<td id="number">❌</td>
+				</tr>
+				<tr>
+					<td>Symbols</td>
+					<td id="symbols">❌</td>
+				</tr>
+				<tr>
+					<td>Length >8</td>
+					<td id="len8">❌</td>
+				</tr>
+				<tr>
+					<td>Length >16</td>
+					<td id="len16">❌</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>
+<script>
+	const password = document.getElementById("password");
+	const progress = document.getElementById("progress");
+	const lowercase = document.getElementById("lowercase");
+	const uppercase = document.getElementById("uppercase");
+	const number = document.getElementById("number");
+	const symbols = document.getElementById("symbols");
+	const len8 = document.getElementById("len8");
+	const len16 = document.getElementById("len16");
+
+	let passwordStrength = 0;
+	password.oninput = function () {
+		const strengthVariety = [
+			false, // lowercase
+			false, //uppercase
+			false, // symbol
+			false, // number
+			this.value.length >= 8, // size 8
+			this.value.length >= 16, // size 16
+		];
+		for (let char of this.value) {
+			if (/[A-Z]/.test(char)) {
+				strengthVariety[1] = true;
+			} else if (/[a-z]/.test(char)) {
+				strengthVariety[0] = true;
+			} else if (/[0-9]/.test(char)) {
+				strengthVariety[3] = true;
+			} else {
+				strengthVariety[2] = true;
+			}
+		}
+		let level = 0;
+		for (let strength of strengthVariety) {
+			if (strength) level++;
+		}
+		lowercase.textContent = strengthVariety[0] ? "✅" : "❌";
+		uppercase.textContent = strengthVariety[1] ? "✅" : "❌";
+		symbols.textContent = strengthVariety[2] ? "✅" : "❌";
+		number.textContent = strengthVariety[3] ? "✅" : "❌";
+		len8.textContent = strengthVariety[4] ? "✅" : "❌";
+		len16.textContent = strengthVariety[5] ? "✅" : "❌";
+		progress.value = level * (100 / strengthVariety.length);
+		console.log(strengthVariety, this.value);
+	};
+</script>
