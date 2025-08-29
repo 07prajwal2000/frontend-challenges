@@ -1,0 +1,47 @@
+.observer {
+  margin-top: 5px;
+  height: 80px;
+  background: red;
+  color: white;
+  font-size: 25px;
+  padding: 8px;
+  text-align: center;
+  animation-name: beep;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes beep {
+  0% {
+    background-color: green;
+  }
+  50% {
+    background-color: blue;
+  }
+  100% {
+    background-color: red;
+  }
+}
+
+.todo-list-base {
+  border: 1px solid green;
+  height: 550px;
+  max-height: 550px;
+  overflow-y: auto;
+  padding: 2px;
+}
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.todo-item {
+  height: 50px;
+  /* width: 100%; */
+  border: 2px solid blue;
+  padding: 5px;
+}

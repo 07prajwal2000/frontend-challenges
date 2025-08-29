@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>telephone formatter</title>
+		<style>
+			input {
+				font-size: 18px;
+				padding: 8px;
+				border-radius: 8px;
+				border: 2px solid rgb(133, 133, 246);
+			}
+			input:focus {
+				outline: 3px solid rgb(162, 162, 255);
+				border-radius: 8px;
+			}
+		</style>
+	</head>
+	<body>
+		<input type="text" id="phone-entry" placeholder="+(999) 999-9999" />
+	</body>
+</html>
+<script>
+	const entry = document.getElementById("phone-entry");
+	entry.onkeypress = function (e) {
+		if (!isValid(e.key)) {
+			e.preventDefault();
+			return;
+		}
+	};
+	let prevInput = "";
+	entry.oninput = function (e) {
+		const valLength = this.value.length;
+		const prevLength = prevInput.length;
+		if (prevLength > valLength && valLength == 11) {
+			this.value = this.value.substring(0, valLength - 1);
+		} else if (prevLength > valLength && valLength == 7) {
+			this.value = this.value.substring(2, 5);
+		} else if (valLength > prevLength) {
+			this.value = formatNumber(this.value);
+		}
+		prevInput = this.value;
+	};
+
+	function isValid(value) {
+		const firstAscii = "0".charCodeAt(0);
+		const lastAscii = "9".charCodeAt(0);
+		const valueAscii = value.charCodeAt(0);
+		return valueAscii >= firstAscii && valueAscii <= lastAscii;
+	}
+	function formatNumber(str) {
+		if (str.length === 3) {
+			return `+(${str}) `;
+		}
+		if (str.length === 10) {
+			return `${str}-`;
+		}
+		if (str.length >= 14) {
+			return str.substring(0, 15);
+		}
+		return str;
+	}
+</script>

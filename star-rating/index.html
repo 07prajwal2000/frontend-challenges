@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<style>
+			.rating-container {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				gap: 10px;
+				background: #d1d1d1;
+				width: fit-content;
+				padding: 10px;
+			}
+			.star {
+				border: 2px solid red;
+				border-radius: 20px;
+				padding: 1.2em;
+			}
+			.star-highlight {
+				background-color: yellow;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>Currently selected: <span id="currently-selected">0</span></h2>
+		<div class="rating-container">
+			<div class="star" data-rating="1">1</div>
+			<div class="star" data-rating="2">2</div>
+			<div class="star" data-rating="3">3</div>
+			<div class="star" data-rating="4">4</div>
+			<div class="star" data-rating="5">5</div>
+			<div class="star" data-rating="6">6</div>
+			<div class="star" data-rating="7">7</div>
+			<div class="star" data-rating="8">8</div>
+		</div>
+	</body>
+</html>
+
+<script>
+	const stars = document.querySelectorAll(".star");
+	const currentlySelected = document.querySelector("#currently-selected");
+	let selected = 0;
+	for (let star of stars) {
+		const ratingNumber = Number(star.getAttribute("data-rating"));
+		star.addEventListener("mouseenter", () => {
+			highlightStars(ratingNumber);
+		});
+		star.onclick = () => {
+			highlightStars(ratingNumber);
+			selected = ratingNumber;
+			currentlySelected.textContent = ratingNumber;
+		};
+	}
+	document.querySelector(".rating-container").onmouseleave = function () {
+		highlightStars(selected);
+	};
+	function highlightStars(total) {
+		for (let i = 1; i <= stars.length; i++) {
+			stars[i - 1].classList.toggle("star-highlight", i <= total);
+		}
+	}
+</script>

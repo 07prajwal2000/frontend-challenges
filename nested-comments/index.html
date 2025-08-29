@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Nested comments</title>
+		<style>
+			.comments-container {
+				display: flex;
+				flex-direction: column;
+				gap: 15px;
+				background-color: aliceblue;
+				padding: 15px 10px;
+			}
+			.comment-box {
+				display: flex;
+				flex-direction: column;
+				gap: 10px;
+				padding: 6px;
+				border: 1px solid green;
+			}
+			.comment-username {
+				font-weight: 600;
+				opacity: 70%;
+			}
+			.comment-reply-box {
+				margin-left: 20px;
+				margin-top: 5px;
+				padding: 0 15px;
+				display: flex;
+				flex-direction: column;
+				gap: 4px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="comments-container"></div>
+	</body>
+</html>
+<script>
+	const comments = [
+		{
+			username: "prajwal",
+			comment: "ankjnkank",
+			replies: [
+				{
+					username: "prajwal",
+					comment: "ndnf oef pqeiwjfpeq",
+				},
+				{
+					username: "prajwal",
+					comment: "ndnf oef pqeiwjfpeq",
+					replies: [
+						{
+							username: "prajwal",
+							comment: " j roqqji rjq3prjq3pjrpr",
+						},
+						{
+							username: "prajwal",
+							comment: " j roqqji rjq3prjq3pjrpr",
+						},
+					],
+				},
+				{
+					username: "prajwal",
+					comment: "ndnf oef pqeiwjfpeq",
+				},
+			],
+		},
+		{
+			username: "prajwal",
+			comment: "ankjnkank",
+			replies: [
+				{
+					username: "prajwal",
+					comment: "ndnf oef pqeiwjfpeq",
+				},
+				{
+					username: "prajwal",
+					comment: "ndnf oef pqeiwjfpeq",
+				},
+			],
+		},
+		{
+			username: "prajwal",
+			comment: "ankjnkank",
+		},
+		{
+			username: "prajwal",
+			comment: "ankjnkank",
+		},
+		{
+			username: "prajwal",
+			comment: "ankjnkank",
+		},
+	];
+
+	const commentsContainer = document.querySelector(".comments-container");
+
+	renderComments();
+	function renderComments() {
+		for (let comment of comments) {
+			commentsContainer.appendChild(createCommentbox(comment));
+		}
+	}
+	function createCommentbox(comment) {
+		const commentBox = document.createElement("div");
+		commentBox.classList.add("comment-box");
+		const username = document.createElement("div");
+		username.classList.add("comment-username");
+		username.textContent = comment.username;
+		const commentText = document.createElement("div");
+		commentText.classList.add("comment-text");
+		commentText.textContent = comment.comment;
+		commentBox.append(username, commentText);
+		if (comment.replies && comment.replies.length > 0) {
+			const replyBox = document.createElement("div");
+			replyBox.classList.add("comment-reply-box");
+			for (let reply of comment.replies) {
+				replyBox.append(createCommentbox(reply));
+			}
+			commentBox.append(replyBox);
+		}
+		return commentBox;
+	}
+</script>
