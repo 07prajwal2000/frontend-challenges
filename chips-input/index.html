@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Chips Input</title>
+		<style>
+			input {
+				font-size: 18px;
+				padding: 8px;
+				border-radius: 8px;
+				border: none;
+				width: 100%;
+			}
+			input:focus {
+				outline: none;
+			}
+			#chips-input {
+				border: 2px solid rgb(112, 112, 255);
+				border-radius: 8px;
+				display: flex;
+				align-items: center;
+				padding: 6px 0;
+			}
+			#chips-input:focus-within {
+				outline: 2px solid rgb(126, 126, 255);
+			}
+			.chip {
+				padding: 4px 12px;
+				border-radius: 10px;
+				border: 1px solid rgb(138, 138, 251);
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				gap: 8px;
+			}
+			.chip p {
+				margin: 0;
+			}
+			.chip div {
+				border: 1px solid rgb(75, 75, 75);
+				padding: 2px 4px;
+				border-radius: 5px;
+			}
+			.chips-container {
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+				gap: 4px;
+				margin-left: 8px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="chips-input">
+			<div class="chips-container"></div>
+			<input type="text" id="chips-entry" />
+		</div>
+		<template data-chips-template>
+			<div class="chip">
+				<p data-chip-text>abc</p>
+				<div data-chip-close>X</div>
+			</div>
+		</template>
+	</body>
+</html>
+<script>
+	const input = document.querySelector("#chips-entry");
+	const chipsContainer = document.querySelector(".chips-container");
+	const chipsTemplate = document.querySelector("[data-chips-template]");
+
+	input.onkeydown = function (e) {
+		const value = this.value.trim();
+		if (e.key === "Backspace" && chipsContainer.lastChild && value === "") {
+			chipsContainer.removeChild(chipsContainer.lastChild);
+			return;
+		}
+		if (e.key !== "Enter") return;
+		if (value == "") return;
+		const template = chipsTemplate.content.cloneNode(true).children[0];
+		template.querySelector("[data-chip-text]").textContent = value;
+		template.querySelector("[data-chip-close]").onclick = function () {
+			chipsContainer.removeChild(template);
+		};
+		chipsContainer.appendChild(template);
+		this.value = "";
+	};
+</script>

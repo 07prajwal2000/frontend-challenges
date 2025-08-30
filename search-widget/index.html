@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Search Widget</title>
+		<style>
+			.hide {
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<h2>Search Widget with debounce</h2>
+		<input type="text" id="search" placeholder="🔎 Search" />
+		<ul></ul>
+	</body>
+</html>
+<script>
+	const list = document.querySelector("ul");
+	const searchInput = document.querySelector("#search");
+	let items = [];
+	const debouncer = debounce((val) => {
+		for (let item of items) {
+			const match = item.name.includes(val);
+			item.node.classList.toggle("hide", !match);
+		}
+	}, 350);
+	async function fetchData() {
+		let skip = 0;
+		while (true) {
+			const req = await fetch("https://dummyjson.com/recipes?skip=" + skip);
+			const jsonData = await req.json();
+			const recipes = jsonData.recipes;
+			const total = jsonData.total;
+			const limit = jsonData.limit;
+			skip += jsonData.limit;
+			for (let recipe of recipes) {
+				const node = document.createElement("li");
+				node.textContent = recipe.name;
+				list.append(node);
+				items.push({
+					node,
+					name: recipe.name.toLowerCase(),
+				});
+			}
+			if (skip >= total) break;
+		}
+	}
+	fetchData();
+	searchInput.oninput = function (e) {
+		const val = this.value.toLowerCase();
+		debouncer(val);
+	};
+	function debounce(callback, delay = 1000) {
+		let timeoutId = undefined;
+		return function () {
+			if (timeoutId) {
+				clearTimeout(timeoutId);
+				timeoutId = undefined;
+			}
+			const args = arguments;
+			timeoutId = setTimeout(() => {
+				callback.apply(null, args);
+			}, delay);
+		};
+	}
+</script>
