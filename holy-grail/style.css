@@ -1,0 +1,53 @@
+body {
+  font-family: sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+header,
+nav,
+main,
+aside,
+footer {
+  padding: 12px;
+}
+#root {
+  height: 100vh;
+}
+header {
+  background-color: tomato;
+  text-align: center;
+  height: 15vh;
+}
+#main-body {
+  height: 65vh;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: 2fr 4fr 2fr;
+}
+
+nav {
+  background-color: coral;
+  text-align: center;
+}
+
+main {
+  background-color: moccasin;
+  text-align: center;
+}
+
+aside {
+  background-color: sandybrown;
+  text-align: center;
+}
+
+footer {
+  background-color: slategray;
+  height: 20vh;
+  text-align: center;
+}
