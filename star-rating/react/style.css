@@ -1,0 +1,21 @@
+body {
+  font-family: sans-serif;
+}
+
+.star-icon {
+  --icon-size: 32px;
+
+  cursor: pointer;
+  height: var(--icon-size);
+  width: var(--icon-size);
+}
+
+.star-icon-filled {
+  fill: yellow;
+}
+
+.stars-container {
+  outline: 1px solid green;
+  width: fit-content;
+  padding: 10px;
+}

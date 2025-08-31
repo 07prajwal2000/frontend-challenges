@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Digital Clock</title>
+		<style>
+			.clock-container {
+				border: 2px solid rgb(100, 100, 255);
+				width: fit-content;
+				padding: 10px;
+				border-radius: 10px;
+				display: flex;
+				flex-direction: row;
+				gap: 10px;
+			}
+			h3 {
+				margin: 2px;
+				text-align: center;
+			}
+			p {
+				margin: 2px;
+				text-align: center;
+				font-size: 18px;
+			}
+			.clock-unit-container {
+				border: 2px solid rgb(91, 91, 255);
+				border-radius: 10px;
+				padding: 5px;
+			}
+			.action-btn {
+				color: white;
+				border-radius: 10px;
+			}
+			.start {
+				background-color: rgb(59, 141, 59);
+			}
+			.stop {
+				background-color: rgb(222, 51, 51);
+			}
+		</style>
+	</head>
+	<body>
+		<h2>Stop Watch</h2>
+		<div class="clock-container">
+			<div class="clock-unit-container">
+				<h3>Hour</h3>
+				<hr />
+				<p id="hour-unit">0</p>
+			</div>
+			<div class="clock-unit-container">
+				<h3>Minute</h3>
+				<hr />
+				<p id="minute-unit">0</p>
+			</div>
+			<div class="clock-unit-container">
+				<h3>Second</h3>
+				<hr />
+				<p id="second-unit">0</p>
+			</div>
+			<button id="action-btn" class="action-btn start">START</button>
+		</div>
+	</body>
+</html>
+<script>
+	const hourUnit = document.getElementById("hour-unit");
+	const minuteUnit = document.getElementById("minute-unit");
+	const secondUnit = document.getElementById("second-unit");
+	const actionBtn = document.getElementById("action-btn");
+	let intervalId = undefined;
+	let startDate = null;
+	actionBtn.onclick = function () {
+		this.textContent = intervalId ? "START" : "STOP";
+		if (!intervalId) {
+			startDate = new Date();
+			this.setAttribute("data-start", "false");
+			intervalId = setInterval(() => {
+				const nowDate = new Date();
+				const seconds = Math.floor((nowDate - startDate) / 1000);
+				const hours = Math.floor(seconds / 3600);
+				const minutes = Math.floor((seconds / 60) % 60);
+				hourUnit.textContent = hours;
+				minuteUnit.textContent = minutes;
+				secondUnit.textContent = seconds % 60;
+			}, 1000);
+		} else {
+			clearInterval(intervalId);
+			intervalId = undefined;
+		}
+		this.classList.toggle("start");
+		this.classList.toggle("stop");
+	};
+</script>
