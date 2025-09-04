@@ -1,0 +1,9 @@
+@import "tailwindcss";
+
+input {
+  @apply border-2 border-blue-600 outline-0 rounded-md text-lg focus:outline-blue-300 focus:outline-3 p-2;
+}
+
+hr {
+  @apply m-0 p-0 border w-full;
+}

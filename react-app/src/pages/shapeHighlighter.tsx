@@ -3,8 +3,8 @@
 import { useEffect, useState } from "react";
 
 const shape = [
-	[1, 0, 1, 1, 1, 1, 1],
-	[0, 1, 1],
+	[1, 1, 0],
+	[1, 1, 0],
 	[1, 0, 1],
 ];
 

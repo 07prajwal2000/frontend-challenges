@@ -6,18 +6,12 @@ const Index = () => {
 			<h2 className="text-3xl">Home page</h2>
 			<ul className="list-disc px-8">
 				<li>
-					<Link
-						className="underline text-blue-700 text-xl"
-						to={"/spa/bar-chart"}
-					>
+					<Link className="underline text-blue-700 text-xl" to={"/bar-chart"}>
 						Bar chart
 					</Link>
 				</li>
 				<li>
-					<Link
-						className="underline text-blue-700 text-xl"
-						to={"/spa/file-tree"}
-					>
+					<Link className="underline text-blue-700 text-xl" to={"/file-tree"}>
 						File tree
 					</Link>
 				</li>
@@ -30,11 +24,51 @@ const Index = () => {
 					</Link>
 				</li>
 				<li>
+					<Link className="underline text-blue-700 text-xl" to={"/calculator"}>
+						Calculator
+					</Link>
+				</li>
+				<li>
+					<Link className="underline text-blue-700 text-xl" to={"/tabs"}>
+						Tabs
+					</Link>
+				</li>
+				<li>
+					<Link className="underline text-blue-700 text-xl" to={"/modal"}>
+						Modal
+					</Link>
+				</li>
+				<li>
 					<Link
 						className="underline text-blue-700 text-xl"
-						to={"/spa/calculator"}
+						to={"/image-carousel"}
 					>
-						Calculator
+						Image Carousel
+					</Link>
+				</li>
+				<li>
+					<Link className="underline text-blue-700 text-xl" to={"/accordian"}>
+						Accordian
+					</Link>
+				</li>
+				<li>
+					<Link className="underline text-blue-700 text-xl" to={"/switch"}>
+						Switch
+					</Link>
+				</li>
+				<li>
+					<Link className="underline text-blue-700 text-xl" to={"/forms"}>
+						Forms
+					</Link>
+				</li>
+				<li>
+					<Link className="underline text-blue-700 text-xl" to={"/typeahead"}>
+						Type ahead
+					</Link>
+				</li>
+				<li>
+					<Link className="underline text-blue-700 text-xl" to={"/otp"}>
+						OTP
 					</Link>
 				</li>
 			</ul>
