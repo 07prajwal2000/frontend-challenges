@@ -89,6 +89,11 @@ const Index = () => {
 						Word Quiz
 					</Link>
 				</li>
+				<li>
+					<Link className="underline text-blue-700 text-xl" to={"/tictactoe"}>
+						Tic Tac Toe
+					</Link>
+				</li>
 			</ul>
 		</div>
 	);

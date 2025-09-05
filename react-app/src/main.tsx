@@ -17,6 +17,7 @@ import Otp from "./pages/otp";
 import NestedComments from "./pages/nestedComments";
 import Counter from "./pages/counter";
 import GroupWords from "./pages/groupWords";
+import Tictactoe from "./pages/tictactoe";
 
 const router = createBrowserRouter([
 	{
@@ -82,6 +83,10 @@ const router = createBrowserRouter([
 	{
 		Component: GroupWords,
 		path: "/word-quiz",
+	},
+	{
+		Component: Tictactoe,
+		path: "/tictactoe",
 	},
 ]);
 
