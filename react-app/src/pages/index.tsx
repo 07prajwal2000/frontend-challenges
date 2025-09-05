@@ -71,6 +71,24 @@ const Index = () => {
 						OTP
 					</Link>
 				</li>
+				<li>
+					<Link
+						className="underline text-blue-700 text-xl"
+						to={"/nested-comments"}
+					>
+						Nested Comments
+					</Link>
+				</li>
+				<li>
+					<Link className="underline text-blue-700 text-xl" to={"/counter"}>
+						Counter
+					</Link>
+				</li>
+				<li>
+					<Link className="underline text-blue-700 text-xl" to={"/word-quiz"}>
+						Word Quiz
+					</Link>
+				</li>
 			</ul>
 		</div>
 	);

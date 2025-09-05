@@ -1,9 +1,17 @@
 @import "tailwindcss";
 
-input {
-  @apply border-2 border-blue-600 outline-0 rounded-md text-lg focus:outline-blue-300 focus:outline-3 p-2;
+input[type="text"], input[type="number"] {
+  @apply border-2 border-blue-600 outline-0 rounded-md text-lg focus:outline-blue-300 focus:outline-3 p-2 disabled:bg-gray-100;
+}
+
+.btn {
+  @apply px-2 py-1 rounded-md border-2 border-blue-700 active:outline-2 outline-blue-300 active:scale-[.95] transition-transform cursor-pointer hover:bg-blue-500 hover:text-white disabled:bg-gray-200;
 }
 
 hr {
   @apply m-0 p-0 border w-full;
+}
+
+h2 {
+  @apply text-2xl font-semibold;
 }

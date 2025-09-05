@@ -14,6 +14,9 @@ import SwitchPage from "./pages/switch";
 import FormPage from "./pages/form";
 import TypeAhead from "./pages/typeAhead";
 import Otp from "./pages/otp";
+import NestedComments from "./pages/nestedComments";
+import Counter from "./pages/counter";
+import GroupWords from "./pages/groupWords";
 
 const router = createBrowserRouter([
 	{
@@ -67,6 +70,18 @@ const router = createBrowserRouter([
 	{
 		Component: Otp,
 		path: "/otp",
+	},
+	{
+		Component: NestedComments,
+		path: "/nested-comments",
+	},
+	{
+		Component: Counter,
+		path: "/counter",
+	},
+	{
+		Component: GroupWords,
+		path: "/word-quiz",
 	},
 ]);
 
