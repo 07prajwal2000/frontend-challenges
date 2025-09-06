@@ -94,6 +94,21 @@ const Index = () => {
 						Tic Tac Toe
 					</Link>
 				</li>
+				<li>
+					<Link className="underline text-blue-700 text-xl" to={"/todo-list"}>
+						Todo List
+					</Link>
+				</li>
+				<li>
+					<Link className="underline text-blue-700 text-xl" to={"/star-rating"}>
+						Star Rating
+					</Link>
+				</li>
+				<li>
+					<Link className="underline text-blue-700 text-xl" to={"/toast"}>
+						Toast Notification
+					</Link>
+				</li>
 			</ul>
 		</div>
 	);

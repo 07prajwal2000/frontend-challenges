@@ -18,6 +18,9 @@ import NestedComments from "./pages/nestedComments";
 import Counter from "./pages/counter";
 import GroupWords from "./pages/groupWords";
 import Tictactoe from "./pages/tictactoe";
+import TodoList from "./pages/todoList";
+import StarRating from "./pages/starRating";
+import ToastNotification from "./pages/toastNotification";
 
 const router = createBrowserRouter([
 	{
@@ -87,6 +90,18 @@ const router = createBrowserRouter([
 	{
 		Component: Tictactoe,
 		path: "/tictactoe",
+	},
+	{
+		Component: TodoList,
+		path: "/todo-list",
+	},
+	{
+		Component: StarRating,
+		path: "/star-rating",
+	},
+	{
+		Component: ToastNotification,
+		path: "/toast",
 	},
 ]);
 
