@@ -109,6 +109,16 @@ const Index = () => {
 						Toast Notification
 					</Link>
 				</li>
+				<li>
+					<Link className="underline text-blue-700 text-xl" to={"/chips-input"}>
+						Chips Input
+					</Link>
+				</li>
+				<li>
+					<Link className="underline text-blue-700 text-xl" to={"/date-picker"}>
+						Date picker
+					</Link>
+				</li>
 			</ul>
 		</div>
 	);

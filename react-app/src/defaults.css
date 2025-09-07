@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-input[type="text"], input[type="number"] {
+.input {
   @apply border-2 border-blue-600 outline-0 rounded-md text-lg focus:outline-blue-300 focus:outline-3 p-2 disabled:bg-gray-100;
 }
 

@@ -21,6 +21,8 @@ import Tictactoe from "./pages/tictactoe";
 import TodoList from "./pages/todoList";
 import StarRating from "./pages/starRating";
 import ToastNotification from "./pages/toastNotification";
+import ChipsInput from "./pages/chipsInput";
+import DatePicker from "./pages/datePicker";
 
 const router = createBrowserRouter([
 	{
@@ -102,6 +104,14 @@ const router = createBrowserRouter([
 	{
 		Component: ToastNotification,
 		path: "/toast",
+	},
+	{
+		Component: ChipsInput,
+		path: "/chips-input",
+	},
+	{
+		Component: DatePicker,
+		path: "/date-picker",
 	},
 ]);
 
