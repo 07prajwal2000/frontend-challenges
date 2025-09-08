@@ -119,6 +119,35 @@ const Index = () => {
 						Date picker
 					</Link>
 				</li>
+				<li>
+					<Link className="underline text-blue-700 text-xl" to={"/stopwatch"}>
+						Stopwatch
+					</Link>
+				</li>
+				<li>
+					<Link
+						className="underline text-blue-700 text-xl"
+						to={"/seven-segment"}
+					>
+						7 Segment Clock
+					</Link>
+				</li>
+				<li>
+					<Link
+						className="underline text-blue-700 text-xl"
+						to={"/traffic-light"}
+					>
+						Traffic Light
+					</Link>
+				</li>
+				<li>
+					<Link
+						className="underline text-blue-700 text-xl"
+						to={"/transfer-list"}
+					>
+						Transfer List
+					</Link>
+				</li>
 			</ul>
 		</div>
 	);

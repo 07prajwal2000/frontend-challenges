@@ -23,6 +23,10 @@ import StarRating from "./pages/starRating";
 import ToastNotification from "./pages/toastNotification";
 import ChipsInput from "./pages/chipsInput";
 import DatePicker from "./pages/datePicker";
+import StopWatch from "./pages/stopWatch";
+import SevenSegment from "./pages/sevenSegment";
+import TrafficLight from "./pages/trafficLight";
+import TransferList from "./pages/transferList";
 
 const router = createBrowserRouter([
 	{
@@ -112,6 +116,22 @@ const router = createBrowserRouter([
 	{
 		Component: DatePicker,
 		path: "/date-picker",
+	},
+	{
+		Component: StopWatch,
+		path: "/stopwatch",
+	},
+	{
+		Component: SevenSegment,
+		path: "/seven-segment",
+	},
+	{
+		Component: TrafficLight,
+		path: "/traffic-light",
+	},
+	{
+		Component: TransferList,
+		path: "/transfer-list",
 	},
 ]);
 
