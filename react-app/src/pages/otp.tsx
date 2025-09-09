@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import "../defaults.css";
 
 const Otp = () => {
 	const otpLength = 6;
@@ -10,7 +9,8 @@ const Otp = () => {
 
 	function setOtpValue(e: React.ChangeEvent<HTMLInputElement>, index: number) {
 		if (submissionState == 1) return;
-		const value = e.currentTarget.value.substring(0, 1);
+		const rawValue = e.currentTarget.value;
+		const value = rawValue.substring(0, 1);
 		if (value && !isNumber(value)) return;
 		const newOtp = [...otp];
 		newOtp[index] = value;
@@ -72,7 +72,7 @@ const Otp = () => {
 							minLength={0}
 							disabled={submissionState == 1}
 							maxLength={1}
-							className="w-10 text-center disabled:bg-gray-200"
+							className="w-10 text-center input input-primary disabled:bg-gray-200"
 							value={o}
 						/>
 					))}

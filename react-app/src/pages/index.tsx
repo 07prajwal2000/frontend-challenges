@@ -148,6 +148,30 @@ const Index = () => {
 						Transfer List
 					</Link>
 				</li>
+				<li>
+					<Link
+						className="underline text-blue-700 text-xl"
+						to={"/pixel-editor"}
+					>
+						Pixel Editor
+					</Link>
+				</li>
+				<li>
+					<Link
+						className="underline text-blue-700 text-xl"
+						to={"/passoword-strength"}
+					>
+						Password Strength
+					</Link>
+				</li>
+				<li>
+					<Link
+						className="underline text-blue-700 text-xl"
+						to={"/telephone-formatter"}
+					>
+						Telephone Formatter
+					</Link>
+				</li>
 			</ul>
 		</div>
 	);

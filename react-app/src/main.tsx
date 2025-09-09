@@ -27,6 +27,9 @@ import StopWatch from "./pages/stopWatch";
 import SevenSegment from "./pages/sevenSegment";
 import TrafficLight from "./pages/trafficLight";
 import TransferList from "./pages/transferList";
+import PixelEditor from "./pages/pixelEditor";
+import PasswordStrength from "./pages/passwordStrength";
+import TelephoneFormatter from "./pages/telephoneFormatter";
 
 const router = createBrowserRouter([
 	{
@@ -132,6 +135,18 @@ const router = createBrowserRouter([
 	{
 		Component: TransferList,
 		path: "/transfer-list",
+	},
+	{
+		Component: PixelEditor,
+		path: "/pixel-editor",
+	},
+	{
+		Component: PasswordStrength,
+		path: "/passoword-strength",
+	},
+	{
+		Component: TelephoneFormatter,
+		path: "/telephone-formatter",
 	},
 ]);
 
