@@ -30,6 +30,7 @@ import TransferList from "./pages/transferList";
 import PixelEditor from "./pages/pixelEditor";
 import PasswordStrength from "./pages/passwordStrength";
 import TelephoneFormatter from "./pages/telephoneFormatter";
+import NestedCheckbox from "./pages/nestedCheckbox";
 
 const router = createBrowserRouter([
 	{
@@ -147,6 +148,10 @@ const router = createBrowserRouter([
 	{
 		Component: TelephoneFormatter,
 		path: "/telephone-formatter",
+	},
+	{
+		Component: NestedCheckbox,
+		path: "/nested-checkbox",
 	},
 ]);
 

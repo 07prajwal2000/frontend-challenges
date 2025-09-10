@@ -172,6 +172,14 @@ const Index = () => {
 						Telephone Formatter
 					</Link>
 				</li>
+				<li>
+					<Link
+						className="underline text-blue-700 text-xl"
+						to={"/nested-checkbox"}
+					>
+						Nested Checkbox
+					</Link>
+				</li>
 			</ul>
 		</div>
 	);
