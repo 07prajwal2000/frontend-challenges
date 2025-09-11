@@ -31,6 +31,8 @@ import PixelEditor from "./pages/pixelEditor";
 import PasswordStrength from "./pages/passwordStrength";
 import TelephoneFormatter from "./pages/telephoneFormatter";
 import NestedCheckbox from "./pages/nestedCheckbox";
+import DebounceThrottle from "./pages/debounceThrottle";
+import Stepper from "./pages/stepper";
 
 const router = createBrowserRouter([
 	{
@@ -152,6 +154,14 @@ const router = createBrowserRouter([
 	{
 		Component: NestedCheckbox,
 		path: "/nested-checkbox",
+	},
+	{
+		Component: DebounceThrottle,
+		path: "/debounce-throttle",
+	},
+	{
+		Component: Stepper,
+		path: "/stepper",
 	},
 ]);
 

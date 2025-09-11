@@ -6,35 +6,66 @@ const Otp = () => {
 	const otpInputParentRef = useRef<HTMLDivElement>(null);
 	// 0 - not yet, 1 - loading, 2 - success, 3 - fail
 	const [submissionState, setSubmissionState] = useState(0);
+	const inputElements = useRef<HTMLInputElement[]>([]);
+	const canInput = submissionState == 0;
+	const isLoading = submissionState == 1;
+	const isSuccess = submissionState == 2;
+	const isFailure = submissionState == 3;
 
 	function setOtpValue(e: React.ChangeEvent<HTMLInputElement>, index: number) {
-		if (submissionState == 1) return;
+		if (!canInput) return;
 		const rawValue = e.currentTarget.value;
-		const value = rawValue.substring(0, 1);
-		if (value && !isNumber(value)) return;
+		const value = rawValue.substring(
+			e.currentTarget.selectionStart! - 1,
+			e.currentTarget.selectionStart!
+		);
+		if (!isNumber(value)) return;
+		const otpCopy = [...otp];
+		otpCopy[index] = value;
+		setOtp(otpCopy);
+		inputElements.current[index + 1]?.focus();
+		if (index + 1 === otpLength) submitOtp(otpCopy);
+	}
+
+	function onPaste(e: React.ClipboardEvent<HTMLInputElement>, index: number) {
+		const pastedValue = e.clipboardData.getData("text");
 		const newOtp = [...otp];
-		newOtp[index] = value;
-		let canSubmit =
-			index + 1 == otpLength && newOtp.every((num) => num.length == 1);
+		const len = Math.min(pastedValue.length, otpLength);
+		for (let i = 0; i < len; i++) {
+			const pastedChar = pastedValue[i];
+			if (!isNumber(pastedChar)) return;
+			newOtp[i] = pastedChar;
+		}
 		setOtp(newOtp);
-		if (value.length == 0 && index - 1 > -1) {
-			(
-				otpInputParentRef.current?.children[index - 1] as HTMLInputElement
-			)?.focus();
-			return;
-		}
-		if (index + 1 < otpLength && value) {
-			(
-				otpInputParentRef.current?.children[index + 1] as HTMLInputElement
-			)?.focus();
-		}
-		if (canSubmit) {
-			submitOtp();
+
+		if (index + pastedValue.length >= otpLength) submitOtp(newOtp);
+	}
+
+	function handleKeyPress(
+		e: React.KeyboardEvent<HTMLInputElement>,
+		index: number
+	) {
+		const key = e.key;
+		if (key == "Backspace") {
+			const otpCopy = [...otp];
+			otpCopy[index] = "";
+			handleFocus(inputElements.current[index - 1]);
+			setOtp(otpCopy);
+		} else if (key == "ArrowLeft") {
+			handleFocus(inputElements.current[index - 1]);
+		} else if (key == "ArrowRight") {
+			handleFocus(inputElements.current[index + 1]);
 		}
 	}
 
-	function submitOtp() {
+	function handleFocus(input?: HTMLInputElement) {
+		if (!input) return;
+		input.focus();
+	}
+
+	function submitOtp(values: string[]) {
 		setSubmissionState(1);
+		console.log("Submitting OTP", values);
 		setTimeout(() => {
 			const status = Math.random() * 100;
 			setSubmissionState(status > 80 ? 3 : 2); // 80% success rate
@@ -51,12 +82,6 @@ const Otp = () => {
 		return valCode >= start && valCode <= end;
 	}
 
-	function onInputClick(e: React.MouseEvent<HTMLInputElement>) {
-		if (!e.currentTarget.value) return;
-		e.currentTarget.selectionEnd = 1;
-		e.currentTarget.selectionStart = 1;
-	}
-
 	return (
 		<div>
 			<div className="p-4 flex flex-col justify-center items-center gap-2 mx-auto w-[70%]">
@@ -65,27 +90,30 @@ const Otp = () => {
 				<div className="flex flex-row gap-2" ref={otpInputParentRef}>
 					{otp.map((o, i) => (
 						<input
-							onClick={onInputClick}
 							onChange={(e) => setOtpValue(e, i)}
+							onPaste={(e) => onPaste(e, i)}
+							ref={(el) => {
+								inputElements.current[i] = el!;
+							}}
 							key={i}
+							onKeyDown={(e) => handleKeyPress(e, i)}
 							type="text"
-							minLength={0}
-							disabled={submissionState == 1}
-							maxLength={1}
+							inputMode="numeric"
+							disabled={isLoading}
 							className="w-10 text-center input input-primary disabled:bg-gray-200"
 							value={o}
 						/>
 					))}
 				</div>
-				{submissionState == 1 && (
+				{isLoading && (
 					<h3 className="text-lg text-yellow-700 animate-pulse font-semibold">
 						Validating OTP
 					</h3>
 				)}
-				{submissionState == 2 && (
+				{isSuccess && (
 					<h3 className="text-lg text-green-700 font-semibold">Success</h3>
 				)}
-				{submissionState == 3 && (
+				{isFailure && (
 					<h3 className="text-lg text-red-700 font-semibold">Invalid OTP</h3>
 				)}
 			</div>

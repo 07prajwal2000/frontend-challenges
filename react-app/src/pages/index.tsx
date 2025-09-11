@@ -180,6 +180,19 @@ const Index = () => {
 						Nested Checkbox
 					</Link>
 				</li>
+				<li>
+					<Link
+						className="underline text-blue-700 text-xl"
+						to={"/debounce-throttle"}
+					>
+						Debounce Throttle
+					</Link>
+				</li>
+				<li>
+					<Link className="underline text-blue-700 text-xl" to={"/stepper"}>
+						Stepper
+					</Link>
+				</li>
 			</ul>
 		</div>
 	);
